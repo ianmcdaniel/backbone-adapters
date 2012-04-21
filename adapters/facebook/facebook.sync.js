@@ -1,5 +1,5 @@
-// Backbone Sync Extension - Facebook API
-// https://github.com/ianmcdaniel/Backbone-Sync-Extensions
+// Backbone Adapters - Facebook API
+// https://github.com/ianmcdaniel/Backbone-Adapters
 
   FacebookSync = function(method, model, options) {
     var callback, type, params = {};

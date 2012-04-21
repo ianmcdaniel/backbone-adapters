@@ -1,4 +1,4 @@
-Backbone-Sync-Extensions - Facebook API
+Backbone Adapters - Facebook API
 ===
 
 Friend Model

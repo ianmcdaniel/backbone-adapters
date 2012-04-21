@@ -1,5 +1,5 @@
 // An example Backbone application  
-// This demo uses the Facebook Backbone Sync Extension
+// This demo uses the Facebook Backbone Adapter
 // Based off the backbone todos app by [JÃ©rÃ´me Gravel-Niquet](http://jgn.me/). 
 
 
