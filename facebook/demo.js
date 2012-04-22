@@ -13,7 +13,7 @@ $(function(){
   window.Friend = Backbone.Model.extend({
 
     // Use Facebook Sync extension
-    sync:FacebookSync
+    sync:Backbone.FacebookSync
   });
 
   // Friends Collection
@@ -29,7 +29,7 @@ $(function(){
     url:'me/friends',
   
     // Use Facebook Sync extension
-    sync:FacebookSync,
+    sync:Backbone.FacebookSync,
     
     // sort friends alphabetically
     comparator:function(friend) {
