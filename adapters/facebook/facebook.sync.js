@@ -1,7 +1,10 @@
 // Backbone Adapters - Facebook API
 // https://github.com/ianmcdaniel/Backbone-Adapters
 
-  FacebookSync = function(method, model, options) {
+(function() {
+  // A Backbone.sync Adapter for the facebook graph api
+
+  var FacebookSync = function(method, model, options) {
     var url, data= {}, type, callback, getValue;
     type = {
       'create': 'post',
@@ -66,3 +69,8 @@
     }
     
   };
+  
+  // attach it to Backbone namespace
+  Backbone.FacebookSync = FacebookSync;
+
+})();

@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-
   
   var lastRequest = {};
   FB = {
@@ -25,26 +24,26 @@ $(document).ready(function(){
   
 
   var Friend = Backbone.Model.extend({
-    sync:FacebookSync
+    sync:Backbone.FacebookSync
   })
 
   var Friends = Backbone.Collection.extend({
     url : "me/friends",
     model: Friend,
-    sync:FacebookSync
+    sync:Backbone.FacebookSync
   });
 
   var Message = Backbone.Model.extend({
-    sync:FacebookSync
+    sync:Backbone.FacebookSync
   })
 
   var Feed = Backbone.Collection.extend({
     url : "me/feed",
     model:Message,
-    sync:FacebookSync
+    sync:Backbone.FacebookSync
   });
 
-  module("FacebookSync", {
+  module("facebookSync", {
 
     setup : function() {
       friend = new Friend({id:'me'});
@@ -56,8 +55,8 @@ $(document).ready(function(){
 
   });
   
-  test("sync: FacebookSync exists", function() {
-    ok(!!FacebookSync);
+  test("sync: exists", function() {
+    ok(!!Backbone.FacebookSync);
   });
   
 
@@ -116,7 +115,7 @@ $(document).ready(function(){
 
   test("sync: urlError", function() {
     var model = new (Backbone.Model.extend({
-      sync:FacebookSync
+      sync:Backbone.FacebookSync
     }));
     raises(function() {
       model.fetch();

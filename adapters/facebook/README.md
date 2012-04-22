@@ -15,7 +15,7 @@ Include facebook.sync.js after your backbone.js file and facebook javascript SDK
 ```javascript
 var Friend = Backbone.Model.extend({
   
-  sync: FacebbokSync
+  sync: Backbone.FacebookSync
     
 });
 ```
@@ -27,7 +27,7 @@ var FriendList = Backbone.Collection.extend({
 
   url:'me/friends',
 
-  sync:FacebookSync
+  sync:Backbone.FacebookSync
 
 });
 ```
