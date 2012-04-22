@@ -2,7 +2,8 @@
 // https://github.com/ianmcdaniel/Backbone-Adapters
 
   FacebookSync = function(method, model, options) {
-    var callback, type, getValue, params = {};
+    var url, data= {}, type, callback, getValue;
+    console.log(method)
     type = {
       'create': 'post',
       'update': 'post',
@@ -16,17 +17,21 @@
       if (!(object && object[prop])) return null;
       return _.isFunction(object[prop]) ? object[prop]() : object[prop];
     }
-
-    if(!options.url) {
-      try{
-        params.url = getValue(model,'url');
-      } catch(e) {
+    
+    
+        
+    if(!options.url) {    
+      if(getValue(model.attributes, 'id') && model.url === Backbone.Model.prototype.url) {
         // if we have an id, we dont need a url
-        params.url = getValue(model.attributes, 'id'); 
-        if(!params.url) {
+        url = getValue(model.attributes, 'id'); 
+      } else {
+        url = getValue(model,'url');
+        if(!url) {
           throw new Error('A "url" property or "id" must be specified');
         }
       }
+    } else {
+      url = options.url;
     }
     
     // if a collection's parse method has not been changed then
@@ -36,11 +41,10 @@
     }
 
     if (!options.data && model && (method == 'create' || method == 'update')) {
-      params.data = JSON.stringify(model);
+      data = model.toJSON();
     }
-    
-    params = _.extend(params, options);
-    
+    _.extend(data, options.data);
+
     // make sure error and success functions get called
     callback = function(res) {
       if (!res) return;
@@ -57,9 +61,9 @@
     
     // Make the request to facebook using the facebook js sdk
     if(type == 'get') {
-      return FB.api(params.url,params,callback)
+      return FB.api(url,data,callback)
     } else {
-      return FB.api(params.url,type,params,callback)
+      return FB.api(url,type,data,callback)
     }
     
   };
