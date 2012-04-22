@@ -27,12 +27,7 @@ var FriendList = Backbone.Collection.extend({
 
   url:'me/friends',
 
-  sync:FacebookSync,
-  
-  // facebook returns lists in a 'data' array
-  parse: function(resp) {
-    return resp.data;
-  }
+  sync:FacebookSync
 
 });
 ```
