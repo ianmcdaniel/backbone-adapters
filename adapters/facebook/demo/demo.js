@@ -28,10 +28,8 @@ $(function(){
     // path to friends api
     url:'me/friends',
   
-  // Use Facebook Sync extension
+    // Use Facebook Sync extension
     sync:FacebookSync,
-  
-
     
     // sort friends alphabetically
     comparator:function(friend) {
@@ -72,21 +70,26 @@ $(function(){
     // the App already present in the HTML.
     el: $("#friendapp"),
 
-    // Our template for the line of statistics at the bottom of the app.
+    // Our template for the count at the bottom of the app.
     statsTemplate: _.template($('#stats-template').html()),
 
     // At initialization we bind to the relevant events on the `Friends`
     // collection. 
     initialize: function() {
-
-      Friends.bind('all', this.render, this);
-      Friends.bind('reset', this.addAll, this);
-
+    
       this.footer = this.$('footer');
       this.main = $('#main');
       this.login = $('#login-btn')
+      
+      Friends.bind('all', this.render, this);
+      Friends.bind('reset', this.addAll, this);
 
-
+      // Check facebook login status to see if the user is already logged in 
+      // and approved
+      FB.getLoginStatus(this.handleAuthResponse);
+  
+      // Listen to see if the users authentication changes 
+      FB.Event.subscribe('auth.authResponseChange', this.handleAuthResponse);
     },
 
     // Re-rendering the App just means refreshing the statistics -- the rest
@@ -109,13 +112,18 @@ $(function(){
     // Add all items in the **Friends** collection at once.
     addAll: function() {
       Friends.each(this.addOne);
+    },
+    
+    // handle the auth response we get from facebook
+    handleAuthResponse: function(resp) {
+      // if user is logged in and has approved the app then fetch their friends
+      if (resp.status === 'connected') {
+        Friends.fetch();
+      }
     }
 
 
   });
-
-  // Create the app view
-  var App = new AppView;
 
 
   // Intitialize Facebook
@@ -126,21 +134,8 @@ $(function(){
     xfbml   : true
   });
 
-  // handle the auth response we get from facebook
-  var handleAuthResponse = function(resp) {
-    // if user is logged in and has approved the app then fetch their friends
-    if (resp.status === 'connected') {
-      Friends.fetch();
-    }
-  }
-  
-  // Check facebook login status to see if the user is already logged in 
-  // and approved
-  FB.getLoginStatus(handleAuthResponse);
-  
-  // Listen to see if the users authentication changes 
-  FB.Event.subscribe('auth.authResponseChange', handleAuthResponse);
-
+  // Create the app view
+  var App = new AppView;
 
 
 
