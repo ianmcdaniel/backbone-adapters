@@ -2,7 +2,7 @@
 // https://github.com/ianmcdaniel/Backbone-Adapters
 
   FacebookSync = function(method, model, options) {
-    var callback, type, params = {};
+    var callback, type, getValue, params = {};
     type = {
       'create': 'post',
       'update': 'post',
@@ -11,11 +11,28 @@
     }[method];
 
     options || (options = {});
+    
+    getValue = function(object,prop) {
+      if (!(object && object[prop])) return null;
+      return _.isFunction(object[prop]) ? object[prop]() : object[prop];
+    }
 
-    if(model && model.url) {
-      params.url = (_.isFunction(model.url)) ? model.url(method) : model.url;
-    } else if (!options.url) {
-      throw new Error('A "url" property or function must be specified');
+    if(!options.url) {
+      try{
+        params.url = getValue(model,'url');
+      } catch(e) {
+        // if we have an id, we dont need a url
+        params.url = getValue(model.attributes, 'id'); 
+        if(!params.url) {
+          throw new Error('A "url" property or "id" must be specified');
+        }
+      }
+    }
+    
+    // if a collection's parse method has not been changed then
+    // create one that works with facebook data results
+    if(model && model.parse && model.parse === Backbone.Collection.prototype.parse) {
+      model.parse = function(resp) {return resp.data}
     }
 
     if (!options.data && model && (method == 'create' || method == 'update')) {

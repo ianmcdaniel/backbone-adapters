@@ -31,10 +31,7 @@ $(function(){
   // Use Facebook Sync extension
     sync:FacebookSync,
   
-    // facebook returns friends in a 'data' array
-    parse: function(resp) {
-      return resp.data;
-    },
+
     
     // sort friends alphabetically
     comparator:function(friend) {
