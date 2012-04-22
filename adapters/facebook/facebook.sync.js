@@ -3,7 +3,6 @@
 
   FacebookSync = function(method, model, options) {
     var url, data= {}, type, callback, getValue;
-    console.log(method)
     type = {
       'create': 'post',
       'update': 'post',
