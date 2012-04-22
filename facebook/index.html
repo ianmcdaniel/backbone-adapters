@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Backbone Adapters - Facebook</title>
+    <link rel="stylesheet" href="demo.css"/>
+  </head>
+  <body>
+
+    <div id="friendapp">
+    
+      <header>
+        <h1>Facebook Friends</h1>
+        <div id="login-btn">
+          <fb:login-button>Login to Facebook</fb:login-button>
+        </div>
+      </header>
+  
+      <section id="main">
+        <ul id="friend-list"></ul>
+      </section>
+  
+      <footer>
+        <div id="friend-count"></div>
+      </footer>
+    
+    </div>
+    
+    <div id="instructions">
+      Login to view your facebook friends
+    </div>
+  
+    <div id="credits">
+      Created by
+      <br />
+      <a href="http://twitter.com/ianmcdaniel">Ian McDaniel</a> & <a href="http://twitter.com/bradbouse">Brad Bouse</a>.
+    </div>
+  
+    <script src="../javascripts/lib/jquery.js"></script>
+    <script src="../javascripts/lib/underscore.js"></script>
+    <script src="../javascripts/lib/backbone.js"></script>    
+        
+    <script src="http://connect.facebook.net/en_US/all.js"></script>
+    <script src="facebook.sync.js"></script>
+    <script src="demo.js"></script>
+    
+    <!-- Templates -->
+  
+    <script type="text/template" id="friend-template">
+      <div class="view">
+        <a href="http://facebook.com/<%= id %>" class="view-on-fb" target="_blank">view on facebook</a>
+        <img src=" http://graph.facebook.com/<%= id %>/picture" style="vertical-align:middle"/>
+        <label><%= name %></label>
+      </div>
+    </script>
+  
+    <script type="text/template" id="stats-template">
+      <% if (count) { %>
+        You have <%= count %> facebook friends
+      <% } %>
+    </script>  
+
+  </body>
+</html>
