@@ -95,7 +95,6 @@ $(function(){
     // Re-rendering the App just means refreshing the statistics -- the rest
     // of the app doesn't change.
     render: function() {
-
       if (Friends.length) {
         this.main.show();
         this.footer.show();
@@ -134,16 +133,9 @@ $(function(){
     xfbml   : true
   });
 
+
   // Create the app view
   var App = new AppView;
-
-
-
-
-
-
-
-
 
 
 });
