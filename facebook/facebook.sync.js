@@ -1,6 +1,7 @@
 // Backbone Adapters - Facebook API
 // https://github.com/ianmcdaniel/Backbone-Adapters
 
+;(function(){
   FacebookSync = function(method, model, options) {
     var url, data= {}, type, callback, getValue;
     type = {
@@ -66,3 +67,8 @@
     }
     
   };
+  
+
+
+
+
