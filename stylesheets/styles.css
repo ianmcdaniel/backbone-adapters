@@ -184,7 +184,7 @@ ul.buttons a strong {
 section {
   width:530px;
   float:right;
-  padding-bottom:550px;
+  padding-bottom:100%;
 }
 
 small {
