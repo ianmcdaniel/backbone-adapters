@@ -35,42 +35,41 @@
         <h4>Backbone Adapters</h4>
         <ul class="nav">
           <li><a href="#what_is_this">What is this?</a></li>
-          <li><a href="#how_to_contribute">How can I contribute?</a></li>
+          <li><a href="#how_to_use">How to use adapters</a></li>
         </ul>
         <h4>Adapters</h4>
         <ul class="nav">
-          <li>
-            <a href="#facebook">
-              <img src="images/icons/facebook_16.png" /> Facebook
-            </a>
-          </li>
-          <li>
-            <a href="#twitter">
-              <img src="images/icons/twitter_16.png" /> Twitter
-            </a>
-          </li>
-          <li>
-            <a href="#linkedin">
-              <img src="images/icons/linkedin_16.png" /> LinkedIn
-            </a>
-          </li>
+          <li><a href="#facebook">Facebook</a></li>
+          <li><a href="#twitter">Twitter</a></li>
+          <li><a href="#linkedin">LinkedIn</a></li>
          <li><em>More coming...</em></li>
           
+        </ul>
+        <h4>Contributing</h4>
+        <ul class="nav">
+          <li><a href="#how_to_contribute">How can I contribute?</a></li>
+          <li><a href="#suggestions">Suggest an adapter</a></li>
         </ul>
       </header>
       <section>
         <h2 id="what_is_this">What is this?</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac facilisis elit. Fusce turpis leo, bibendum vel sagittis quis, faucibus sed diam. Phasellus orci quam, dictum nec vestibulum at, euismod nec est. Integer imperdiet adipiscing lobortis. Etiam eros sapien, mollis quis convallis eget, fringilla a ante. Pellentesque mattis bibendum mauris, a gravida velit euismod a. Duis placerat bibendum erat, in aliquet tellus elementum sed.</p>
-
-        <h2 id="how_to_contribute">How can I contribute?</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac facilisis elit. Fusce turpis leo, bibendum vel sagittis quis, faucibus sed diam. Phasellus orci quam, dictum nec vestibulum at, euismod nec est. Integer imperdiet adipiscing lobortis. Etiam eros sapien, mollis quis convallis eget, fringilla a ante. Pellentesque mattis bibendum mauris, a gravida velit euismod a. Duis placerat bibendum erat, in aliquet tellus elementum sed.</p>
-        <ul>
-          <li>Fork the <a href="https://github.com/ianmcdaniel/Backbone-Adapters">official repository</a>.</li>
-          <li>Clone your fork: <code>git clone git@github.com:&lt;your-username&gt;/brunch.git</code></li>
-          <li>Make sure tests are passing for you: <code>npm install &amp;&amp; npm test</code></li>
-          <li>Create a topic branch: <code>git checkout -b features/new-feature-name</code></li>
-          <li>Add tests and code for your changes.</li>
-        </ul>
+<hr>
+        <h2 id="how_to_use">How to use backbone adapters</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac facilisis elit. Fusce turpis leo, bibendum vel sagittis quis, faucibus sed diam. Phasellus orci quam, dictum nec vestibulum at, euismod nec est. Integer imperdiet adipiscing lobortis. Etiam eros sapien, mollis quis convallis eget, fringilla a ante. Pellentesque mattis bibendum mauris, a gravida velit euismod a. Duis placerat bibendum erat, in aliquet tellus elementum sed.</p>
+<pre class="prettyprint linenums">
+var Friend = Backbone.Model.extend({
+  sync: Backbone.FacebookSync
+});
+
+var Coworkers = Backbone.Collection.extend({
+  url:'people/connections',
+  sync: Backbone.LinkedInSync
+});
+</pre>
+
+<hr>
 
         <h2 id="facebook">
           <img src="images/icons/facebook_32.png" />
@@ -106,7 +105,7 @@ var FriendList = Backbone.Collection.extend({
       <a href="#">Check out the demo</a>
       </p>
       
-      
+      <hr>
       <h2 id="twitter">
         <img src="images/icons/twitter_32.png" />
         Twitter Adapter
@@ -120,13 +119,37 @@ $ git checkout gh-pages
 </pre>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac facilisis elit. Fusce turpis leo, bibendum vel sagittis quis, faucibus sed diam. Phasellus orci quam, dictum nec vestibulum at, euismod nec est. Integer imperdiet adipiscing lobortis. Etiam eros sapien, mollis quis convallis eget, fringilla a ante. Pellentesque mattis bibendum mauris, a gravida velit euismod a. Duis placerat bibendum erat, in aliquet tellus elementum sed.</p>
       
+  <hr>
+      <h2 id="linkedin">
+        <img src="images/icons/linkedin_32.png" />
+        LinkedIn Adapter
+      </h2>
       
-      <p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac facilisis elit. Fusce turpis leo, bibendum vel sagittis quis, faucibus sed diam. Phasellus orci quam, dictum nec vestibulum at, euismod nec est. Integer imperdiet adipiscing lobortis. Etiam eros sapien, mollis quis convallis eget, fringilla a ante. Pellentesque mattis bibendum mauris, a gravida velit euismod a. Duis placerat bibendum erat, in aliquet tellus elementum sed.</p>
+<pre class="prettyprint linenums">
+$ cd your_repo_root/repo_name
+$ git fetch origin
+$ git checkout gh-pages
+</pre>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac facilisis elit. Fusce turpis leo, bibendum vel sagittis quis, faucibus sed diam. Phasellus orci quam, dictum nec vestibulum at, euismod nec est. Integer imperdiet adipiscing lobortis. Etiam eros sapien, mollis quis convallis eget, fringilla a ante. Pellentesque mattis bibendum mauris, a gravida velit euismod a. Duis placerat bibendum erat, in aliquet tellus elementum sed.</p>
+      
+      
+      
+      <hr>
+        <h2 id="how_to_contribute">How can I contribute?</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac facilisis elit. Fusce turpis leo, bibendum vel sagittis quis, faucibus sed diam. Phasellus orci quam, dictum nec vestibulum at, euismod nec est. Integer imperdiet adipiscing lobortis. Etiam eros sapien, mollis quis convallis eget, fringilla a ante. Pellentesque mattis bibendum mauris, a gravida velit euismod a. Duis placerat bibendum erat, in aliquet tellus elementum sed.</p>
+        <ul>
+          <li>Fork the <a href="https://github.com/ianmcdaniel/Backbone-Adapters" target="_blank">official repository</a>.</li>
+          <li>Clone your fork: <br><code>git clone git@github.com:&lt;YOUR-USERNAME&gt;/Backbone-Adapters.git</code></li>
+          <li>If adding a new adapter, create a new folder for it in the adapters directory</li>
+          <li>If possible, please provide tests and a demo app</li>
+          <li>Create a pull request from your branch</li>
+        </ul>
+        <hr>
+        <h2 id="suggestions">Suggest an adapter</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac facilisis elit. Fusce turpis leo, bibendum vel sagittis quis, faucibus sed diam. Phasellus orci quam, dictum nec vestibulum at, euismod nec est. Integer imperdiet adipiscing lobortis. Etiam eros sapien, mollis quis convallis eget, fringilla a ante. Pellentesque mattis bibendum mauris, a gravida velit euismod a. Duis placerat bibendum erat, in aliquet tellus elementum sed.</p>
+        
+        
       </section>
       <footer>
         <p>
