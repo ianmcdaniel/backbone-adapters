@@ -15,9 +15,9 @@ Include linkedin.sync.js after your backbone.js file and linkedin javascript SDK
 ##### Create your models:
 
 ```javascript
-var Coworker = Backbone.Model.extend({
+var Contact = Backbone.Model.extend({
   
-  sync: Backbone.FacebookSync
+  sync: Backbone.LinkedInSync
     
 });
 ```
@@ -25,11 +25,13 @@ var Coworker = Backbone.Model.extend({
 ##### and your collections:
 
 ```javascript
-var Connections = Backbone.Collection.extend({
+var ContactList = Backbone.Collection.extend({
 
-  url:'me/friends',
+  model: Contact,
+    
+  url:'people/~/connections',
 
-  sync:Backbone.FacebookSync
+  sync:Backbone.LinkedInSync
 
 });
 ```
