@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Backbone Adapters - LinkedIn</title>
+    <link rel="stylesheet" href="demo.css"/>
+  </head>
+  <body>
+
+    <div id="contactsapp">
+    
+      <header>
+        <h1>LinkedIn Connections</h1>
+        <div id="login-btn">
+          <script type="in/Login">
+            You're authorized, <?js= firstName ?>.
+          </script>
+        </div>
+      </header>
+  
+      <section id="main">
+        <ul id="contacts-list"></ul>
+      </section>
+  
+      <footer>
+      </footer>
+    
+    </div>
+    
+    <div id="instructions">
+      Login to view your linkedin connections
+    </div>
+  
+    <div id="credits">
+      Created by
+      <br />
+      <a href="http://twitter.com/ianmcdaniel">Ian McDaniel</a> & <a href="http://twitter.com/bradbouse">Brad Bouse</a>.
+    </div>
+  
+    <script src="../../javascripts/lib/jquery.js"></script>
+    <script src="../../javascripts/lib/underscore.js"></script>
+    <script src="../../javascripts/lib/backbone.js"></script>    
+    
+    <script src="http://platform.linkedin.com/in.js">
+      api_key: 16ef494el1l2
+    </script>
+    <script src="linkedin.sync.js"></script>
+    <script src="demo.js"></script>
+    
+    <!-- Templates -->
+  
+    <script type="text/template" id="contact-template">
+      <div class="view media">
+        <img src="<%= pictureUrl %>" class="img" style="vertical-align:middle" width="40"/>
+        <div class="bd">
+          <label><%= firstName %> <%= lastName %></label>
+          <div>
+            <small><%= headline %></small>
+          </div>
+        </div>
+      </div>
+    </script>
+  
+    <script type="text/template" id="stats-template">
+      <% if (count) { %>
+        You have <%= count %> linkedin connections
+      <% } %>
+    </script>  
+
+  </body>
+</html>
