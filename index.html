@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Backbone Adapters</title>
+    
+    <link rel="stylesheet" href="docs/css/styles.css">
+    <link rel="stylesheet" href="docs/css/pygment_trac.css">
+    <link rel="stylesheet" href="docs/css/prettify.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+  </head>
+  <body data-spy="scroll" >
+    <div class="wrapper">
+      <header>
+        <h1>
+          Backbone Adapters   
+          <a href="https://github.com/ianmcdaniel/Backbone-Adapters"><small>ianmcdaniel/Backbone-Adapters</small></a>
+        </h1>
+        <p></p>
+        <ul class="buttons">
+          <li><a href="https://github.com/ianmcdaniel/Backbone-Adapters/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/ianmcdaniel/Backbone-Adapters/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/ianmcdaniel/Backbone-Adapters">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+        
+        <h4>Backbone Adapters</h4>
+        <ul class="nav">
+          <li><a href="#what_is_this">What is this?</a></li>
+          <li><a href="#how_to_use">How to use adapters</a></li>
+        </ul>
+        <h4>Adapters</h4>
+        <ul class="nav">
+          <li><a href="#facebook">Facebook</a></li>
+          <li><a href="#twitter">Twitter</a></li>
+          <li><a href="#linkedin">LinkedIn</a></li>
+         <li><em>More coming...</em></li>
+          
+        </ul>
+        <h4>Contributing</h4>
+        <ul class="nav">
+          <li><a href="#how_to_contribute">How can I contribute?</a></li>
+          <li><a href="#suggestions">Suggest an adapter</a></li>
+        </ul>
+      </header>
+      <section>
+      
+        <h2 id="what_is_this">What is this?</h2>
+        <p>
+          Backbone adapters are an open source collection of sync methods designed to make it easy 
+          to integrate your backbone models and collections with data from popular 3rd party APIs.
+        </p>
+        <p>
+          The project is <a href="http://github.com/ianmcdaniel/backbone-adapters/">hosted on GitHub</a> 
+          and maintained by <a href="http://twitter.com/ianmcdaniel">@ianmcdaniel</a> and 
+          <a href="http://twitter.com/bradbouse">@bradbouse</a>.
+          Bugs and suggestions are welcome and should be reported to the <a href="http://github.com/ianmcdaniel/backbone-adapters/issues">issues page</a>.
+          Backbone Adapters are available for use under the <a href="http://github.com/ianmcdaniel/backbone-adapters/blob/master/LICENSE">MIT software license</a>.
+        </p>
+
+        <hr>
+        <h2 id="how_to_use">How to use backbone adapters</h2>
+        <p>
+          Backbone adapters are easy to add to your projects, just set the sync property on your 
+          models and collections to use the appropriate adapter. Thats it!
+        </p>
+        
+<pre class="prettyprint linenums">
+// create a facebook friend model
+var Friend = Backbone.Model.extend({
+  sync: Backbone.FacebookSync
+});
+
+// create a facebook friends collection
+var Friends = Backbone.Collection.extend({
+  model:Friend,
+  url:'me/friends',
+  sync: Backbone.FacebookSync
+});
+
+var friendlist = new Friends();
+friendlist.fetch();
+</pre>
+
+        <p>
+          If you're using the Facebook Javascript SDK and you have an authenticated user you will now
+          have a backbone collection of your facebook friends. <a href="examples/facebook">See it in action</a>.
+        </p>
+
+        <hr>
+        <h2 id="facebook">
+          <img src="docs/images/facebook_32.png" />
+          Facebook Adapter
+        </h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac facilisis elit. Fusce turpis leo, bibendum vel sagittis quis, faucibus sed diam. Phasellus orci quam, dictum nec vestibulum at, euismod nec est. Integer imperdiet adipiscing lobortis. Etiam eros sapien, mollis quis convallis eget, fringilla a ante. Pellentesque mattis bibendum mauris, a gravida velit euismod a. Duis placerat bibendum erat, in aliquet tellus elementum sed.</p>
+
+<pre class="prettyprint linenums">
+&lt;script src="backbone.js"&gt;&lt;/script&gt;
+&lt;script src="http://connect.facebook.net/en_US/all.js"&gt;&lt;/script&gt;
+&lt;script src="facebook.sync.js"&gt;&lt;/script&gt;
+</pre>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac facilisis elit. Fusce turpis leo, bibendum vel sagittis quis, faucibus sed diam. Phasellus orci quam, dictum nec vestibulum at, euismod nec est. Integer imperdiet adipiscing lobortis. Etiam eros sapien, mollis quis convallis eget, fringilla a ante. Pellentesque mattis bibendum mauris, a gravida velit euismod a. Duis placerat bibendum erat, in aliquet tellus elementum sed.</p>
+
+<pre class="prettyprint linenums">
+var Friend = Backbone.Model.extend({
+  sync: Backbone.FacebookSync
+});
+</pre>
+
+        <p>And your collections</p>
+        
+<pre class="prettyprint linenums">
+var FriendList = Backbone.Collection.extend({
+  url:'me/friends',
+  sync:Backbone.FacebookSync
+});
+</pre>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <a href="examples/facebook">Check out the demo</a>
+        </p>
+        
+        <hr>
+        <h2 id="twitter">
+          <img src="docs/images/twitter_32.png" />
+          Twitter Adapter
+        </h2>      
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac facilisis elit. Fusce turpis leo, bibendum vel sagittis quis, faucibus sed diam. Phasellus orci quam, dictum nec vestibulum at, euismod nec est. Integer imperdiet adipiscing lobortis. Etiam eros sapien, mollis quis convallis eget, fringilla a ante. Pellentesque mattis bibendum mauris, a gravida velit euismod a. Duis placerat bibendum erat, in aliquet tellus elementum sed.</p>
+      
+<pre class="prettyprint linenums">
+$ cd your_repo_root/repo_name
+$ git fetch origin
+$ git checkout gh-pages
+</pre>
+      
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac facilisis elit. Fusce turpis leo, bibendum vel sagittis quis, faucibus sed diam. Phasellus orci quam, dictum nec vestibulum at, euismod nec est. Integer imperdiet adipiscing lobortis. Etiam eros sapien, mollis quis convallis eget, fringilla a ante. Pellentesque mattis bibendum mauris, a gravida velit euismod a. Duis placerat bibendum erat, in aliquet tellus elementum sed.</p>
+        
+        <hr>
+        <h2 id="linkedin">
+          <img src="docs/images/linkedin_32.png" />
+          LinkedIn Adapter
+        </h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac facilisis elit. Fusce turpis leo, bibendum vel sagittis quis, faucibus sed diam. Phasellus orci quam, dictum nec vestibulum at, euismod nec est. Integer imperdiet adipiscing lobortis. Etiam eros sapien, mollis quis convallis eget, fringilla a ante. Pellentesque mattis bibendum mauris, a gravida velit euismod a. Duis placerat bibendum erat, in aliquet tellus elementum sed.</p>
+      
+<pre class="prettyprint linenums">
+$ cd your_repo_root/repo_name
+$ git fetch origin
+$ git checkout gh-pages
+</pre>
+      
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac facilisis elit. Fusce turpis leo, bibendum vel sagittis quis, faucibus sed diam. Phasellus orci quam, dictum nec vestibulum at, euismod nec est. Integer imperdiet adipiscing lobortis. Etiam eros sapien, mollis quis convallis eget, fringilla a ante. Pellentesque mattis bibendum mauris, a gravida velit euismod a. Duis placerat bibendum erat, in aliquet tellus elementum sed.</p>
+  
+        <hr>
+        <h2 id="how_to_contribute">How can I contribute?</h2>
+        <p>Want to help? </p>
+        <ul>
+          <li>Fork the <a href="https://github.com/ianmcdaniel/Backbone-Adapters" target="_blank">official repository</a>.</li>
+          <li>Clone your fork: <br><code>git clone git@github.com:&lt;YOUR-USERNAME&gt;/Backbone-Adapters.git</code></li>
+          <li>If adding a new adapter, create a new folder for it in the adapters directory</li>
+          <li>If possible, please provide tests and a demo app</li>
+          <li>Create a pull request from your branch</li>
+        </ul>
+        
+        <hr>
+        <h2 id="suggestions">Suggest an adapter</h2>
+        <p>
+          Don't see your favorite API in our list of adapters? Let us know. If there's some demand, 
+          for it, we'll add it.
+        </p>
+      
+      </section>
+      <footer>
+        <small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small>
+      </footer>
+    </div> <!-- wrapper -->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+    <script src="docs/js/prettify.js"></script>
+    <script src="docs/js/scrollspy.js"></script>    
+    <script src="docs/js/scale.fix.js"></script>
+    
+    <script>
+      $("a").on("click", function(event) {
+        var position = $($(this).attr("href")).offset().top - 23;
+        var scroll = function(element) {
+          $(element).animate({scrollTop: position}, 400);
+        };
+        scroll("html");
+        scroll("body");
+        event.preventDefault();    
+      });
+      
+      window.prettyPrint && prettyPrint();
+      
+     $('header').scrollspy();
+    </script>
+    
+  </body>
+</html>

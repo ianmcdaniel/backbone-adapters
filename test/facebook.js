@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-  
   var lastRequest = {};
   FB = {
     api:function(url,type,data,callback) {
@@ -43,7 +42,7 @@ $(document).ready(function(){
     sync:Backbone.FacebookSync
   });
 
-  module("facebookSync", {
+  module("FacebookSync", {
 
     setup : function() {
       friend = new Friend({id:'me'});
@@ -55,12 +54,12 @@ $(document).ready(function(){
 
   });
   
-  test("sync: exists", function() {
+  test("exists", function() {
     ok(!!Backbone.FacebookSync);
   });
   
 
-  test("sync: read model", function() {
+  test("read model", function() {
     friend.fetch();
     equal(lastRequest.url, 'me');
     equal(lastRequest.type, null);
@@ -68,7 +67,7 @@ $(document).ready(function(){
     ok(_.isFunction(lastRequest.callback));
   });
 
-  test("sync: read collection", function() {
+  test("read collection", function() {
     friends.fetch();
     equal(lastRequest.url, 'me/friends');
     equal(lastRequest.type, null);
@@ -76,7 +75,7 @@ $(document).ready(function(){
     ok(_.isFunction(lastRequest.callback));
   });
 
-  test("sync: passing data", function() {
+  test("passing data", function() {
     var data = {a:'a',one:1}
     friends.fetch({data:data});
     equal(lastRequest.url, 'me/friends');
@@ -84,9 +83,8 @@ $(document).ready(function(){
     equal(lastRequest.data.one, 1);
   });
   
-
   
-  test("sync: create", function() {
+  test("create", function() {
     feed.create({message:'hello'}).save();
     equal(lastRequest.url, 'me/feed');
     equal(lastRequest.type, 'post');
@@ -95,7 +93,7 @@ $(document).ready(function(){
 
   });
 
-  test("sync: update", function() {
+  test("update", function() {
     feed.first().save({message: 'world'});
     equal(lastRequest.url, '123');
     equal(lastRequest.type, 'post');
@@ -104,7 +102,7 @@ $(document).ready(function(){
   });
 
 
-  test("sync: destroy", function() {
+  test("destroy", function() {
     feed.first().destroy({wait: true});
     equal(lastRequest.url, '123');
     equal(lastRequest.type, 'delete');
@@ -113,7 +111,7 @@ $(document).ready(function(){
   });
 
 
-  test("sync: urlError", function() {
+  test("url error", function() {
     var model = new (Backbone.Model.extend({
       sync:Backbone.FacebookSync
     }));

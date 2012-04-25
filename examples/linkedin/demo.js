@@ -15,7 +15,7 @@ $(function(){
       firstName:"",
       lastName:"",
       headline:"",
-      pictureUrl:"images/icon_no_photo_40x40.png",
+      pictureUrl:"icon_no_photo_40x40.png",
       siteStandardProfileRequest:{
         url:""
       }
