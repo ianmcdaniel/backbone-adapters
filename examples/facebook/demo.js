@@ -127,7 +127,7 @@ $(function(){
 
   // Intitialize Facebook
   FB.init({
-    appId   : 'YOUR_FACEBOOK_APP_ID',
+    appId   : '249968071767179',
     status  : true,
     cookie  : true,
     xfbml   : true
