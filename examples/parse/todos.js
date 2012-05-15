@@ -1,7 +1,6 @@
-// An example Backbone application contributed by
-// [Jérôme Gravel-Niquet](http://jgn.me/). This demo uses a simple
-// [LocalStorage adapter](backbone-localstorage.html)
-// to persist Backbone models within your browser.
+// An example Backbone application  
+// This demo uses the Parse Backbone Adapter
+// Based off the backbone todos app by [JÃ©rÃ´me Gravel-Niquet](http://jgn.me/). 
 
 // Load the application once the DOM is ready, using `jQuery.ready`:
 $(function(){
@@ -14,7 +13,7 @@ $(function(){
   
     sync:Backbone.ParseSync,
     
-    idAttribute:'objectId',
+    //idAttribute:'objectId',
     
 
     // Default attributes for the todo item.
@@ -170,8 +169,7 @@ $(function(){
     // Delegated events for creating new items, and clearing completed ones.
     events: {
       "keypress #new-todo":  "createOnEnter",
-      "click #clear-completed": "clearCompleted",
-      "click #toggle-all": "toggleAllComplete"
+      "click #clear-completed": "clearCompleted"
     },
 
     // At initialization we bind to the relevant events on the `Todos`
@@ -189,7 +187,11 @@ $(function(){
       this.footer = this.$('footer');
       this.main = $('#main');
 
-      Todos.fetch();
+      Todos.fetch({
+        data:{
+          limit:50
+        }
+      });
     },
 
     // Re-rendering the App just means refreshing the statistics -- the rest
