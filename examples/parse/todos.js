@@ -54,7 +54,6 @@ $(function(){
   
     sync:Backbone.ParseSync,
     url:'classes/todos',
-    
 
     // Reference to this collection's model.
     model: Todo,

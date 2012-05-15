@@ -54,11 +54,10 @@
     params.data = JSON.stringify(data);
 
     // if a collection's parse method has not been changed then
-    // create one that works with facebook data results
+    // create one that works with parse data results
     if(model && model.parse && model.parse === Backbone.Collection.prototype.parse) {
       model.parse = function(resp) {return resp.results}
     }
-
 
     // Make the request, allowing the user to override any Ajax options.
     return $.ajax(_.extend(params, options));
