@@ -1329,7 +1329,7 @@
     // Ensure that we have the appropriate request data.
     if (!options.data && model && (method == 'create' || method == 'update')) {
       params.contentType = 'application/json';
-      params.data = JSON.stringify(model.toJSON());
+      params.data = model.toJSON();
     }
 
     // For older servers, emulate JSON by encoding the request into an HTML-form.
@@ -1354,7 +1354,7 @@
     if (params.type !== 'GET' && !Backbone.emulateJSON) {
       params.processData = false;
     }
-
+console.log(_.extend(params, options))
     // Make the request, allowing the user to override any Ajax options.
     return $.ajax(_.extend(params, options));
   };
