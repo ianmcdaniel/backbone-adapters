@@ -178,7 +178,6 @@ $(function(){
     initialize: function() {
 
       this.input = this.$("#new-todo");
-      this.allCheckbox = this.$("#toggle-all")[0];
 
       Todos.bind('add', this.addOne, this);
       Todos.bind('reset', this.addAll, this);
@@ -209,7 +208,6 @@ $(function(){
         this.footer.hide();
       }
 
-      this.allCheckbox.checked = !remaining;
     },
 
     // Add a single todo item to the list by creating a view for it, and
@@ -238,11 +236,6 @@ $(function(){
     clearCompleted: function() {
       _.each(Todos.done(), function(todo){ todo.clear(); });
       return false;
-    },
-
-    toggleAllComplete: function () {
-      var done = this.allCheckbox.checked;
-      Todos.each(function (todo) { todo.save({'done': done}); });
     }
 
   });
