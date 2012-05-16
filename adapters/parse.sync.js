@@ -51,11 +51,10 @@
 
     // Ensure that we have the appropriate request data.
     if (!options.data && model && (method == 'create' || method == 'update')) {
-      data = model.toJSON();
-      delete data.createdAt;
-      delete data.updatedAt;      
+      params.data = model.toJSON();
+      delete params.data.createdAt;
+      delete params.data.updatedAt;
     }
-    params.data = JSON.stringify(data);
 
     // if a collection's parse method has not been changed then
     // create one that works with parse data results
@@ -68,9 +67,12 @@
     } else if(model.model) {
       model.model.prototype.idAttribute = "objectId";
     }
-
+    
+    params = _.extend(params, options);
+    params.data = JSON.stringify(params.data);
+    
     // Make the request, allowing the user to override any Ajax options.
-    return $.ajax(_.extend(params, options));
+    return $.ajax(params);
   };  
 
   // containers for credentials
