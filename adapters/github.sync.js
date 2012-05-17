@@ -32,7 +32,7 @@
     var params = {
       type: type,
       dataType: 'json',
-      contentType: 'application/json',
+      contentType: 'application/x-www-form-urlencoded',
       headers : { 
         "Authorization" : "token " + GithubSync.access_token
       }
