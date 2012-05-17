@@ -32,9 +32,9 @@
     var params = {
       type: type,
       dataType: 'json',
-      contentType: 'application/x-www-form-urlencoded',
+      contentType: 'application/json',
       headers : { 
-        "Authorization" : "token " + GithubSync.access_token
+        //"Authorization" : "token " + GithubSync.access_token
       }
     };
 
@@ -50,7 +50,9 @@
     }
     
     params = _.extend(params, options);
-    params.data = JSON.stringify(params.data);
+    
+    params.data.access_token = GithubSync.access_token;
+    //params.data = JSON.stringify(params.data);
     
     // Make the request, allowing the user to override any Ajax options.
     return $.ajax(params);
