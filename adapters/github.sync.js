@@ -34,8 +34,7 @@
       dataType: 'json',
       contentType: 'application/json',
       headers : { 
-        "Authorization" : "token " + GithubSync.access_token,
-        "Origin": window.location.protocol + "//" + window.location.host
+        "Authorization" : "token " + GithubSync.access_token
       }
     };
 
