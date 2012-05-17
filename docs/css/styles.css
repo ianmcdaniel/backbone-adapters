@@ -59,7 +59,7 @@ a small {
 }
 
 .wrapper {
-  width:860px;
+
   margin:0 auto;
 }
 
@@ -106,15 +106,22 @@ img {
 }
 
 header {
-  width:270px;
-  float:left;
-  position:fixed;
-  top:25px;
+  width: 270px;  
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #f8f8f8;
+  bottom: 0;
+  padding: 30px;
+  border-right: solid 1px #ddd;
+  box-shadow: inset -2px 0 1px rgba(0, 0, 0, 0.05);
+  overflow:auto;
 }
 
 .active a {color:#000}
 
 ul.buttons {
+  display:none;
   list-style:none;
   height:40px;
   
@@ -182,8 +189,8 @@ ul.buttons a strong {
 }
 
 section {
-  width:530px;
-  float:right;
+  margin-left:330px;
+  float:rleft;
   padding-bottom:100%;
 }
 
@@ -199,6 +206,7 @@ hr {
 }
 
 footer {
+  display:none;
   width:270px;
   float:left;
   position:fixed;

@@ -14,12 +14,11 @@
     <![endif]-->
     
   </head>
-  <body data-spy="scroll" >
+  <body >
     <div class="wrapper">
       <header>
         <h1>
           Backbone Adapters   
-          <a href="https://github.com/ianmcdaniel/backbone-adapters"><small>ianmcdaniel/backbone-adapters</small></a>
         </h1>
         <p></p>
         <ul class="buttons">
@@ -96,7 +95,7 @@ friendlist.fetch();
           <img src="docs/images/facebook_32.png" />
           Facebook Adapter
         </h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac facilisis elit. Fusce turpis leo, bibendum vel sagittis quis, faucibus sed diam. Phasellus orci quam, dictum nec vestibulum at, euismod nec est. Integer imperdiet adipiscing lobortis. Etiam eros sapien, mollis quis convallis eget, fringilla a ante. Pellentesque mattis bibendum mauris, a gravida velit euismod a. Duis placerat bibendum erat, in aliquet tellus elementum sed.</p>
+        <p>The Bakcbone Facebook Adapter requires the <a href="http://developers.facebook.com/docs/reference/javascript/" target="_blank">Facebook Javascript SDK</a>. </p>
 
 <pre class="prettyprint linenums">
 &lt;script src="backbone.js"&gt;&lt;/script&gt;
@@ -104,26 +103,32 @@ friendlist.fetch();
 &lt;script src="facebook.sync.js"&gt;&lt;/script&gt;
 </pre>
 
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac facilisis elit. Fusce turpis leo, bibendum vel sagittis quis, faucibus sed diam. Phasellus orci quam, dictum nec vestibulum at, euismod nec est. Integer imperdiet adipiscing lobortis. Etiam eros sapien, mollis quis convallis eget, fringilla a ante. Pellentesque mattis bibendum mauris, a gravida velit euismod a. Duis placerat bibendum erat, in aliquet tellus elementum sed.</p>
-
+        <p>
+          Make a call to <code>FB.init</code> with your apps credentials as described in the 
+          <a href="http://developers.facebook.com/docs/reference/javascript/">Facebook Documentation</a> 
+          beforehand. Once you have authentication you can start setting up your models 
+          and collections by setting the <code>sync</code> property to <code>Backbone.FacebookSync</code>
+          on both your models</p>
 <pre class="prettyprint linenums">
 var Friend = Backbone.Model.extend({
   sync: Backbone.FacebookSync
 });
 </pre>
 
-        <p>And your collections</p>
+        <p>and your collections.</p>
         
 <pre class="prettyprint linenums">
 var FriendList = Backbone.Collection.extend({
   url:'me/friends',
   sync:Backbone.FacebookSync
 });
+
+var Friends = new FriendList();
 </pre>
 
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        <a href="examples/facebook">Check out the demo</a>
+        <p>Making a call to <code>Friends.fetch()</code> will pull a list of your friends from facebook.
         </p>
+        <p>        <a href="examples/facebook">Check out the demo</a></p>
         
         <hr>
         <h2 id="linkedin">
@@ -199,7 +204,6 @@ $ integer ac-facilisis -e
       
       window.prettyPrint && prettyPrint();
       
-     $('header').scrollspy();
     </script>
     
   </body>
