@@ -41,10 +41,20 @@
       var path = getValue(model, 'url') || urlError();
       params.url = base_url + path.replace(/^\//,'');
     }
+    
+    // if a collection or model's parse method has not been changed then
+    // create one that works with instagram data results
+    if(model && model.parse) {
+      if (model.parse === Backbone.Collection.prototype.parse || model.parse === Backbone.Model.prototype.parse) {
+        model.parse = function(resp) {return resp.data}
+      }
+    }
+
 
     // Ensure that we have the appropriate request data.
     if (!options.data && model && (method == 'create' || method == 'update')) {
-      params.data._method = type; 
+      // Unfortunately, Instagram API does not appear to support POSTing from jsonp
+      params.data._method = type;
       params.data = model.toJSON();
     }
     
@@ -58,6 +68,7 @@
 
   };  
 
+  // container for access_token
   InstagramSync.access_token = null;
   
   // attach it to Backbone namespace

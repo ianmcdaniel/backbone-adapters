@@ -6,17 +6,17 @@
 // Load the application once the DOM is ready, using `jQuery.ready`:
 $(function(){
 
-  // Friend Model
+  // Media Model
   // ----------
 
-  // Basic **Friend** model has 'name', and 'id' attributes.
-  window.Media = Backbone.Model.extend({
+  // Basic **Media** model
+  var Media = Backbone.Model.extend({
 
-    // Use Facebook Sync extension
+    // Use Instagram Sync extension
     sync:Backbone.InstagramSync
   });
 
-  // Friends Collection
+  // Media Collection
   // ---------------
 
   // The collection of friends
@@ -68,23 +68,35 @@ $(function(){
     // Instead of generating a new element, bind to the existing skeleton of
     // the App already present in the HTML.
     el: $("#instagramapp"),
+    
 
     // Our template for the count at the bottom of the app.
     statsTemplate: _.template($('#stats-template').html()),
 
-    // At initialization we bind to the relevant events on the `Friends`
+    // At initialization we bind to the relevant events on the `Media`
     // collection. 
     initialize: function() {
     
-      this.footer = this.$('footer');
-      this.main = $('#main');
-      this.login = $('#login-btn')
+      this.footer     = this.$('footer');
+      this.main       = $('#main');
+      this.login_btn  = $('#login-btn')
       
       Images.bind('all', this.render, this);
       Images.bind('reset', this.addAll, this);
 
-      Images.fetch();
-
+      // Check if we have an access token      
+      var access_token = this._getHasVars('access_token');
+      
+      if(access_token) {
+        // hide the login button
+        this.login_btn.hide()
+        
+        // set the access token
+        Backbone.InstagramSync.access_token = access_token;
+        
+        // fetch the images from instagram
+        Images.fetch();
+      }
     },
 
     // Re-rendering the App just means refreshing the statistics -- the rest
@@ -103,39 +115,24 @@ $(function(){
       this.$("#media-list").append(view.render().el);
     },
 
-    // Add all items in the **Friends** collection at once.
+    // Add all items in the **Media** collection at once.
     addAll: function() {
       Images.each(this.addOne);
+    },
+    
+    _getHashVars: function(key) {
+      var vars = {};
+      var parts = window.location.href.replace(/[#&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+          vars[key] = value;
+      });
+      return vars[key];
     }
 
 
   });
 
 
-
-function getHashVars() {
-    var vars = {};
-    var parts = window.location.href.replace(/[#&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-        vars[key] = value;
-    });
-    return vars;
-}
-
-var params = getHashVars();
-if(params.access_token) {
-  $('#login-btn').hide();
-  Backbone.InstagramSync.access_token = params.access_token;
-  
-  // Create the app view
   var App = new AppView;
-  
-} else {
-  $('#login-btn').show()
-}
-
-
-
-
 
 
 });
