@@ -1,32 +1,32 @@
 <!doctype html>
 <html>
   <head>
-    <title>Backbone Adapters - Github</title>
+    <title>Backbone Adapters - Instagram</title>
     <link rel="stylesheet" href="demo.css"/>
   </head>
   <body>
 
-    <div id="friendapp">
+    <div id="instagramapp">
     
       <header>
-        <h1>Github (alpha)</h1>
-        <a id="login-btn" href="https://github.com/login/oauth/authorize?client_id=81dec6162baa6b6beed0&scopes=user">
-          Connect to Github
+        <h1>Instagram</h1>
+        <a id="login-btn" href="https://instagram.com/oauth/authorize/?client_id=23569127152e4aa0b2d4c8f5bdae8b02&redirect_uri=http://ianmcdaniel.github.com/backbone-adapters/instagram&response_type=token">
+          Connect to Instagram
         </a>
       </header>
   
       <section id="main">
-        <ul id="friend-list"></ul>
+        <ul id="media-list"></ul>
       </section>
   
       <footer>
-        <div id="friend-count"></div>
+        <div id="media-count"></div>
       </footer>
     
     </div>
     
     <div id="instructions">
-      Login to view your github stuff
+      Login to view your instagram photos
     </div>
   
     <div id="credits">
@@ -39,16 +39,14 @@
     <script src="../../test/vendor/underscore.js"></script>
     <script src="../../test/vendor/backbone.js"></script>    
         
-    <script src="../../adapters/github.sync.js"></script>
+    <script src="../../adapters/instagram.sync.js"></script>
     <script src="demo.js"></script>
     
     <!-- Templates -->
   
-    <script type="text/template" id="friend-template">
+    <script type="text/template" id="media-template">
       <div class="view">
-
-
-        <label><%= name %></label>
+        <img src="<%= images.thumbnail.url %>" />
       </div>
     </script>
   
@@ -57,25 +55,6 @@
         You have <%= count %> items
       <% } %>
     </script>  
-
-    <script>
-function getUrlVars() {
-    var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-        vars[key] = value;
-    });
-    return vars;
-}
-
-var params = getUrlVars();
-if(params.code) {
-  $('login-btn').hide();
-  alert('your connected! ' + params.code)
-} else {
-  $('login-btn').show()
-}
-    
-    </script>
 
 
   </body>

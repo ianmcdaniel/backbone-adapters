@@ -1,4 +1,4 @@
-// Backbone Adapters - Github API
+// Backbone Adapters - Instagram API
 // https://github.com/ianmcdaniel/Backbone-Adapters
 
 (function() {
@@ -13,10 +13,10 @@
   };
 
   // A Backbone.sync Adapter for the github api
-  var GithubSync = function(method, model, options) {
+  var InstagramSync = function(method, model, options) {
 
     var 
-      base_url = "https://api.github.com",
+      base_url = "https://api.instagram.com/v1/",
       data = {},
       type = {
         'create': 'POST',
@@ -31,11 +31,9 @@
     // Default JSON-request options.
     var params = {
       type: type,
-      dataType: 'json',
+      dataType: 'jsonp',
       contentType: 'application/json',
-      headers : { 
-        //"Authorization" : "token " + GithubSync.access_token
-      }
+      data:{}
     };
 
     // Ensure that we have a URL.
@@ -46,12 +44,13 @@
 
     // Ensure that we have the appropriate request data.
     if (!options.data && model && (method == 'create' || method == 'update')) {
+      params.data._method = type; 
       params.data = model.toJSON();
     }
     
     params = _.extend(params, options);
     
-    params.data.access_token = GithubSync.access_token;
+    params.data.access_token = InstagramSync.access_token;
     //params.data = JSON.stringify(params.data);
     
     // Make the request, allowing the user to override any Ajax options.
@@ -59,8 +58,9 @@
 
   };  
 
+  InstagramSync.access_token = null;
   
   // attach it to Backbone namespace
-  Backbone.GithubSync = GithubSync;
+  Backbone.InstagramSync = InstagramSync;
 
 })();

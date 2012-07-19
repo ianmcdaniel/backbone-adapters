@@ -1,5 +1,5 @@
 // An example Backbone application  
-// This demo uses the Facebook Backbone Adapter
+// This demo uses the Instagram Backbone Adapter
 // Based off the backbone todos app by [JÃ©rÃ´me Gravel-Niquet](http://jgn.me/). 
 
 
@@ -10,48 +10,47 @@ $(function(){
   // ----------
 
   // Basic **Friend** model has 'name', and 'id' attributes.
-  window.Friend = Backbone.Model.extend({
+  window.Media = Backbone.Model.extend({
 
     // Use Facebook Sync extension
-    sync:Backbone.FacebookSync
+    sync:Backbone.InstagramSync
   });
 
   // Friends Collection
   // ---------------
 
   // The collection of friends
-  var FriendList = Backbone.Collection.extend({
+  var MediaList = Backbone.Collection.extend({
 
     // Reference to this collection's model.
-    model: Friend,
+    model: Media,
     
     // path to friends api
-    url:'me/friends',
+    url:'users/self/feed',
   
     // Use Facebook Sync extension
-    sync:Backbone.FacebookSync,
+    sync:Backbone.InstagramSync,
     
-    // sort friends alphabetically
-    comparator:function(friend) {
-      return friend.get("name");
+    parse:function(resp) {
+      return resp.data
     }
 
   });
 
-  // Create a collection of **Friends**.
-  var Friends = new FriendList;
+  // Create a collection of Images.
+  var Images = new MediaList;
 
   // Friend View
   // --------------
 
   // The DOM element for a friend...
-  var FriendView = Backbone.View.extend({
+  var MediaView = Backbone.View.extend({
 
     //... is a list tag.
     tagName:  "li",
 
     // Cache the template function for a single friend.
-    template: _.template($('#friend-template').html()),
+    template: _.template($('#media-template').html()),
 
     // render the names of the friends.
     render: function() {
@@ -68,7 +67,7 @@ $(function(){
 
     // Instead of generating a new element, bind to the existing skeleton of
     // the App already present in the HTML.
-    el: $("#friendapp"),
+    el: $("#instagramapp"),
 
     // Our template for the count at the bottom of the app.
     statsTemplate: _.template($('#stats-template').html()),
@@ -81,44 +80,32 @@ $(function(){
       this.main = $('#main');
       this.login = $('#login-btn')
       
-      Friends.bind('all', this.render, this);
-      Friends.bind('reset', this.addAll, this);
+      Images.bind('all', this.render, this);
+      Images.bind('reset', this.addAll, this);
 
-      // Check facebook login status to see if the user is already logged in 
-      // and approved
-      FB.getLoginStatus(this.handleAuthResponse);
-  
-      // Listen to see if the users authentication changes 
-      FB.Event.subscribe('auth.authResponseChange', this.handleAuthResponse);
+      Images.fetch();
+
     },
 
     // Re-rendering the App just means refreshing the statistics -- the rest
     // of the app doesn't change.
     render: function() {
-      if (Friends.length) {
+      if (Images.length) {
         this.main.show();
         this.footer.show();
         this.login.hide();
-        this.footer.html(this.statsTemplate({count: Friends.length}));
+        this.footer.html(this.statsTemplate({count: Images.length}));
       }
     },
     
-    addOne: function(friend) {
-      var view = new FriendView({model: friend});
-      this.$("#friend-list").append(view.render().el);
+    addOne: function(media) {
+      var view = new MediaView({model: media});
+      this.$("#media-list").append(view.render().el);
     },
 
     // Add all items in the **Friends** collection at once.
     addAll: function() {
-      Friends.each(this.addOne);
-    },
-    
-    // handle the auth response we get from facebook
-    handleAuthResponse: function(resp) {
-      // if user is logged in and has approved the app then fetch their friends
-      if (resp.status === 'connected') {
-        Friends.fetch();
-      }
+      Images.each(this.addOne);
     }
 
 
@@ -126,8 +113,29 @@ $(function(){
 
 
 
+function getHashVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[#&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+
+var params = getHashVars();
+if(params.access_token) {
+  $('#login-btn').hide();
+  Backbone.InstagramSync.access_token = params.access_token;
+  
   // Create the app view
-  //var App = new AppView;
+  var App = new AppView;
+  
+} else {
+  $('#login-btn').show()
+}
+
+
+
+
 
 
 });
