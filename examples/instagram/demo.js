@@ -19,40 +19,36 @@ $(function(){
   // Media Collection
   // ---------------
 
-  // The collection of friends
+  // The collection of media (images)
   var MediaList = Backbone.Collection.extend({
 
     // Reference to this collection's model.
     model: Media,
     
-    // path to friends api
+    // path to current users media feed
     url:'users/self/feed',
   
-    // Use Facebook Sync extension
-    sync:Backbone.InstagramSync,
-    
-    parse:function(resp) {
-      return resp.data
-    }
+    // Use Instagram Sync extension
+    sync:Backbone.InstagramSync
 
   });
 
   // Create a collection of Images.
   var Images = new MediaList;
 
-  // Friend View
+  // Media View
   // --------------
 
-  // The DOM element for a friend...
+  // The DOM element for an image...
   var MediaView = Backbone.View.extend({
 
     //... is a list tag.
     tagName:  "li",
 
-    // Cache the template function for a single friend.
+    // Cache the template function for a single media item.
     template: _.template($('#media-template').html()),
 
-    // render the names of the friends.
+    // render the media image
     render: function() {
       this.$el.html(this.template(this.model.toJSON()));
       return this;
@@ -85,7 +81,7 @@ $(function(){
       Images.bind('reset', this.addAll, this);
 
       // Check if we have an access token      
-      var access_token = this._getHasVars('access_token');
+      var access_token = this._getHashVars('access_token');
       
       if(access_token) {
         // hide the login button
