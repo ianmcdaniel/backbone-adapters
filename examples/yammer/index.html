@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Backbone Adapters - Yammer</title>
+    <link rel="stylesheet" href="demo.css"/>
+  </head>
+  <body>
+
+    <div id="friendapp">
+    
+      <header>
+        <h1>Backbone Todos</h1>
+        <div id="yammer-login"></div>
+      </header>
+  
+      <section id="main">
+        <ul id="friend-list"></ul>
+      </section>
+  
+      <footer>
+        <div id="friend-count"></div>
+      </footer>
+    
+    </div>
+    
+    <div id="instructions">
+      Login to view your yammer messages
+    </div>
+  
+    <div id="credits">
+      Created by
+      <br />
+      <a href="http://twitter.com/ianmcdaniel">Ian McDaniel</a>.
+    </div>
+  
+    <script src="../../test/vendor/jquery.js"></script>
+    <script src="../../test/vendor/underscore.js"></script>
+    <script src="../../test/vendor/backbone.js"></script>    
+        
+
+    
+    <script type="text/javascript" data-app-id="IRtaZ5Rd3MoqeARzSdHww" src="https://assets.yammer.com/platform/yam.js"></script>
+
+
+    
+    <script src="../../adapters/yammer.sync.js"></script>
+    <script src="demo.js"></script>
+    
+    <!-- Templates -->
+  
+    <script type="text/template" id="friend-template">
+      <div class="view">
+        <a href="http://facebook.com/<%= id %>" class="view-on-fb" target="_blank">view on facebook</a>
+        <img src=" http://graph.facebook.com/<%= id %>/picture" style="vertical-align:middle"/>
+        <label><%= name %></label>
+      </div>
+    </script>
+  
+    <script type="text/template" id="stats-template">
+      <% if (count) { %>
+        You have <%= count %> facebook friends
+      <% } %>
+    </script>  
+
+  </body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+  <html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+    <title>MovieBot</title>
+    <script src="js/lib/jquery.js"></script>
+    <script src="js/lib/underscore.js"></script>
+    <script src="js/lib/backbone.js"></script> 
+    <script src="js/lib/backbone.localStorage.js"></script>    
+    <script src="js/lib/bootstrap.min.js"></script>        
+    <link rel=stylesheet href="css/bootstrap.css" type="text/css">
+
+    <style>
+      html {height:100%;}
+      body {
+        background:url('img/background.jpg');
+        background-size:100% 100%;
+        height:100%;
+        color:#fff;
+      }
+    
+    </style>
+
+  </head>
+  <body>
+    <header>
+      Movie Bot
+      <form id="movie-search">
+        <input name="keywords" />
+      </form>
+    </header>
+    <div id="movie_list"></div>
+    <div id="movie_watch"></div>
+    
+    <!-- Templates -->
+
+    
+    <script id="movie_list" type="text/html">        
+      <ul class="nav nav-list">
+        <% movies.each(function(movie) { %>
+          <li><a href="#movie/<%= movie.id %>"><%= movie.title %></a></li>
+        <% }); %>
+      </ul>
+    </script> 
+    
+    <script id="movie_detail" type="text/html">        
+      <h3><%= movie.title %></h3>
+      <p><%= movie.description %></p>
+    </script>
+
+    <!-- App -->
+    <script src="js/app/app.js"></script>
+    
+    <!-- Models -->
+    <script src="js/app/models/movie.js"></script>
+    
+    <!-- Collections -->    
+    <script src="js/app/collections/movies.js"></script>
+    
+    <!-- Routers -->    
+    <script src="js/app/routers/main.js"></script>
+    
+    <!-- Views -->        
+    <script src="js/app/views/layout.js"></script>    
+    <script src="js/app/views/home.js"></script>                      
+    <script src="js/app/views/movie.js"></script>                          
+    <script src="js/app/views/search.js"></script>        
+                    
+  </body>
+</html>
