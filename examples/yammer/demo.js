@@ -1,5 +1,5 @@
 // An example Backbone application  
-// This demo uses the Facebook Backbone Adapter
+// This demo uses the Yammer Backbone Adapter
 // Based off the backbone todos app by [JÃ©rÃ´me Gravel-Niquet](http://jgn.me/). 
 
 
@@ -9,49 +9,49 @@ $(function(){
   // Friend Model
   // ----------
 
-  // Basic **Friend** model has 'name', and 'id' attributes.
-  window.Friend = Backbone.Model.extend({
+  // Basic Coworker model has 'name', and 'id' attributes.
+  window.Coworker = Backbone.Model.extend({
 
-    // Use Facebook Sync extension
+    // Use Yammer Sync extension
     sync:Backbone.YammerSync
   });
 
-  // Friends Collection
+  // Coworkers Collection
   // ---------------
 
-  // The collection of friends
-  var FriendList = Backbone.Collection.extend({
+  // The collection of coworkers
+  var CoworkerList = Backbone.Collection.extend({
 
     // Reference to this collection's model.
-    model: Friend,
+    model: Coworker,
     
-    // path to friends api
-    url:'me/friends',
+    // path to users api
+    url:'https://www.yammer.com/api/v1/users.json',
   
-    // Use Facebook Sync extension
+    // Use Yammer Sync extension
     sync:Backbone.YammerSync,
     
     // sort friends alphabetically
-    comparator:function(friend) {
-      return friend.get("name");
+    comparator:function(coworker) {
+      return coworker.get("name");
     }
 
   });
 
   // Create a collection of **Friends**.
-  var Friends = new FriendList;
+  window.Coworkers = new CoworkerList;
 
-  // Friend View
+  // Coworker View
   // --------------
 
-  // The DOM element for a friend...
-  var FriendView = Backbone.View.extend({
+  // The DOM element for a coworker...
+  var CoworkerView = Backbone.View.extend({
 
     //... is a list tag.
     tagName:  "li",
 
     // Cache the template function for a single friend.
-    template: _.template($('#friend-template').html()),
+    template: _.template($('#item-template').html()),
 
     // render the names of the friends.
     render: function() {
@@ -68,7 +68,7 @@ $(function(){
 
     // Instead of generating a new element, bind to the existing skeleton of
     // the App already present in the HTML.
-    el: $("#friendapp"),
+    el: $("#app"),
 
     // Our template for the count at the bottom of the app.
     statsTemplate: _.template($('#stats-template').html()),
@@ -81,8 +81,8 @@ $(function(){
       this.main = $('#main');
       this.login = $('#yammer-login')
       
-      Friends.bind('all', this.render, this);
-      Friends.bind('reset', this.addAll, this);
+      Coworkers.bind('all', this.render, this);
+      Coworkers.bind('reset', this.addAll, this);
 
       // Check yammer login status to see if the user is already logged in 
       // and approved
@@ -96,22 +96,22 @@ $(function(){
     // Re-rendering the App just means refreshing the statistics -- the rest
     // of the app doesn't change.
     render: function() {
-      if (Friends.length) {
+      if (Coworkers.length) {
         this.main.show();
         this.footer.show();
         this.login.hide();
-        this.footer.html(this.statsTemplate({count: Friends.length}));
+        this.footer.html(this.statsTemplate({count: Coworkers.length}));
       }
     },
     
-    addOne: function(friend) {
-      var view = new FriendView({model: friend});
-      this.$("#friend-list").append(view.render().el);
+    addOne: function(coworker) {
+      var view = new CoworkerView({model: coworker});
+      this.$("#list").append(view.render().el);
     },
 
     // Add all items in the **Friends** collection at once.
     addAll: function() {
-      Friends.each(this.addOne);
+      Coworkers.each(this.addOne);
     },
     
     // handle the auth response we get from facebook
@@ -119,7 +119,7 @@ $(function(){
       // if user is logged in and has approved the app then fetch their friends
       if (resp.authResponse) {
         this.login.html('Welcome!');
-        Friends.fetch();
+        Coworkers.fetch();
       }
     }
 

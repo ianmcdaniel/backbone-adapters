@@ -14,7 +14,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 }
 
-#friendapp {
+#app {
 	background: #fff;
 	padding: 20px;
 	margin-bottom: 40px;
@@ -30,11 +30,11 @@ body {
 	        border-radius: 0 0 5px 5px;
 }
 
-#friendapp header {
+#app header {
   text-align:center;
 }
 
-#friendapp h1 {
+#app h1 {
 	font-size: 36px;
 	font-weight: bold;
 	text-align: center;
@@ -46,20 +46,20 @@ body {
 	display: none;
 }
 
-#friend-list {
+#list {
 	margin: 10px 0;
 	padding: 0;
 	list-style: none;
 }
 
-#friend-list li {
+#list li {
 	padding: 10px 0px 10px 0;
 	position: relative;
 	font-size: 24px;
 	border-bottom: 1px solid #cccccc;
 }
 
-#friend-list li img {
+#list li img {
   vertical-align:middle;
   margin-right:10px;
 	-webkit-border-radius: 5px;
@@ -69,15 +69,15 @@ body {
   	      border-radius: 5px;
 }
 
-#friend-list li:last-child {
+#list li:last-child {
 	border-bottom: none;
 }
 
-#friend-list li .view label {
+#list li .view label {
 	word-break: break-word;
 }
 
-#friendapp footer {
+#app footer {
 	display: none;
 	margin: 0 -20px -20px -20px;
 	overflow: hidden;
@@ -94,7 +94,7 @@ body {
 }
 
 
-#friend-count span {
+#count span {
 	font-weight: bold;
 }
 
@@ -121,7 +121,7 @@ body {
 }
 
 
-.view-on-fb {
+.view-link {
 	position: absolute;
 	right: 5px;
 	top: 15px;
@@ -147,7 +147,7 @@ body {
 	display: none;
 }
 
-.view-on-fb:hover {
+.view-link:hover {
 	background: rgba(0, 0, 0, 0.15);
 	-webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0 0;
 	   -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0 0;
@@ -157,6 +157,6 @@ body {
 
 }
 
-#friend-list li:hover .view-on-fb {
+#list li:hover .view-link {
   display: block;
 }

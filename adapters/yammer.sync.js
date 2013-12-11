@@ -41,9 +41,9 @@
     
     // if a collection's parse method has not been changed then
     // create one that works with facebook data results
-    if(model && model.parse && model.parse === Backbone.Collection.prototype.parse) {
-      model.parse = function(resp) {return resp.data}
-    }
+   // if(model && model.parse && model.parse === Backbone.Collection.prototype.parse) {
+    //  model.parse = function(resp) {return resp.data}
+    //}
 
     if (!options.data && model && (method == 'create' || method == 'update')) {
       data = model.toJSON();
