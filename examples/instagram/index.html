@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Backbone Adapters - Instagram</title>
+    <link rel="stylesheet" href="demo.css"/>
+  </head>
+  <body>
+
+    <div id="instagramapp">
+    
+      <header>
+        <h1>Instagram</h1>
+        <a id="login-btn" href="https://instagram.com/oauth/authorize/?client_id=23569127152e4aa0b2d4c8f5bdae8b02&redirect_uri=http://ianmcdaniel.github.com/backbone-adapters/examples/instagram&response_type=token">
+          Connect to Instagram
+        </a>
+      </header>
+  
+      <section id="main">
+        <ul id="media-list"></ul>
+      </section>
+  
+      <footer>
+        <div id="media-count"></div>
+      </footer>
+    
+    </div>
+    
+    <div id="instructions">
+      Login to view your instagram photos
+    </div>
+  
+    <div id="credits">
+      Created by
+      <br />
+      <a href="http://twitter.com/ianmcdaniel">Ian McDaniel</a>.
+    </div>
+  
+    <script src="../../test/vendor/jquery.js"></script>
+    <script src="../../test/vendor/underscore.js"></script>
+    <script src="../../test/vendor/backbone.js"></script>    
+        
+    <script src="../../adapters/instagram.sync.js"></script>
+    <script src="demo.js"></script>
+    
+    <!-- Templates -->
+  
+    <script type="text/template" id="media-template">
+      <div class="view">
+        <img src="<%= images.thumbnail.url %>" />
+      </div>
+    </script>
+  
+    <script type="text/template" id="stats-template">
+      <% if (count) { %>
+        You have <%= count %> items
+      <% } %>
+    </script>  
+
+
+  </body>
+</html>

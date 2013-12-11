@@ -90,6 +90,7 @@ $(document).ready(function(){
     equal(lastRequest.type, 'post');
     equal(lastRequest.data.message, 'hello');
     ok(_.isFunction(lastRequest.callback));
+    ok(false)
 
   });
 

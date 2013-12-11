@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Backbone Adapters - Yammer</title>
+    <link rel="stylesheet" href="demo.css"/>
+  </head>
+  <body>
+
+    <div id="app">
+    
+      <header>
+        <h1>Yammer Coworkers</h1>
+        <div id="yammer-login"></div>
+      </header>
+  
+      <section id="main">
+        <ul id="list"></ul>
+      </section>
+  
+      <footer>
+        <div id="count"></div>
+      </footer>
+    
+    </div>
+    
+    <div id="instructions">
+      Login to view your yammer coworkers
+    </div>
+  
+    <div id="credits">
+      Created by
+      <br />
+      <a href="http://twitter.com/ianmcdaniel">Ian McDaniel</a>.
+    </div>
+  
+    <script src="../../test/vendor/jquery.js"></script>
+    <script src="../../test/vendor/underscore.js"></script>
+    <script src="../../test/vendor/backbone.js"></script>    
+        
+    <script type="text/javascript" data-app-id="IRtaZ5Rd3MoqeARzSdHww" src="https://assets.yammer.com/platform/yam.js"></script>
+    <script src="../../adapters/yammer.sync.js"></script>
+    <script src="demo.js"></script>
+    
+    <!-- Templates -->
+  
+    <script type="text/template" id="item-template">
+      <div class="view">
+        <a href="<%= url %>" class="view-link" target="_blank">view on yammer</a>
+        <img src="<%= mugshot_url %>" style="vertical-align:middle"/>
+        <label><%= full_name %></label>
+      </div>
+    </script>
+  
+    <script type="text/template" id="stats-template">
+      <% if (count) { %>
+        You have <%= count %> yammer coworkers
+      <% } %>
+    </script>  
+
+  </body>
+</html>
