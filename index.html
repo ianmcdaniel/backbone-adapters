@@ -138,31 +138,42 @@ var Friends = new FriendList();
           <img src="docs/images/linkedin_32.png" />
           LinkedIn Adapter
         </h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac facilisis elit. Fusce turpis leo, bibendum vel sagittis quis, faucibus sed diam. Phasellus orci quam, dictum nec vestibulum at, euismod nec est. Integer imperdiet adipiscing lobortis. Etiam eros sapien, mollis quis convallis eget, fringilla a ante. Pellentesque mattis bibendum mauris, a gravida velit euismod a. Duis placerat bibendum erat, in aliquet tellus elementum sed.</p>
-      
+        <p>The Bakcbone LInkedIn Adapter requires the <a href="https://developer.linkedin.com/documents/getting-started-javascript-api" target="_blank">LinkedIn Javascript SDK</a>. </p>
+
 <pre class="prettyprint linenums">
-$ lorem ispum dolor sit
-$ amet consectetur/adipiscing_elit
-$ integer ac-facilisis -e
+&lt;script src="backbone.js"&gt;&lt;/script&gt;
+&lt;script src="http://platform.linkedin.com/in.js"&gt;
+  api_key: your_api_key_goes_here
+&lt;/script&gt;
+&lt;script src="linkedin.sync.js"&gt;&lt;/script&gt;
 </pre>
-      
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac facilisis elit. Fusce turpis leo, bibendum vel sagittis quis, faucibus sed diam. Phasellus orci quam, dictum nec vestibulum at, euismod nec est. Integer imperdiet adipiscing lobortis. Etiam eros sapien, mollis quis convallis eget, fringilla a ante. Pellentesque mattis bibendum mauris, a gravida velit euismod a. Duis placerat bibendum erat, in aliquet tellus elementum sed.</p>
-  
-        <hr>
-        <h2 id="parse">
-          <img src="docs/images/parse_32.png" />
-          Parse Adapter
-        </h2>      
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac facilisis elit. Fusce turpis leo, bibendum vel sagittis quis, faucibus sed diam. Phasellus orci quam, dictum nec vestibulum at, euismod nec est. Integer imperdiet adipiscing lobortis. Etiam eros sapien, mollis quis convallis eget, fringilla a ante. Pellentesque mattis bibendum mauris, a gravida velit euismod a. Duis placerat bibendum erat, in aliquet tellus elementum sed.</p>
-      
+
+        <p>
+          Make a call to <code>FB.init</code> with your apps credentials as described in the 
+          <a href="http://developers.facebook.com/docs/reference/javascript/">Facebook Documentation</a> 
+          beforehand. Once you have authentication you can start setting up your models 
+          and collections by setting the <code>sync</code> property to <code>Backbone.FacebookSync</code>
+          on both your models</p>
 <pre class="prettyprint linenums">
-$ lorem ispum dolor sit
-$ amet consectetur/adipiscing_elit
-$ integer ac-facilisis -e
+var Friend = Backbone.Model.extend({
+  sync: Backbone.FacebookSync
+});
 </pre>
-      
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac facilisis elit. Fusce turpis leo, bibendum vel sagittis quis, faucibus sed diam. Phasellus orci quam, dictum nec vestibulum at, euismod nec est. Integer imperdiet adipiscing lobortis. Etiam eros sapien, mollis quis convallis eget, fringilla a ante. Pellentesque mattis bibendum mauris, a gravida velit euismod a. Duis placerat bibendum erat, in aliquet tellus elementum sed.</p>
-          
+
+        <p>and your collections.</p>
+        
+<pre class="prettyprint linenums">
+var FriendList = Backbone.Collection.extend({
+  url:'me/friends',
+  sync:Backbone.FacebookSync
+});
+
+var Friends = new FriendList();
+</pre>
+
+        <p>Making a call to <code>Friends.fetch()</code> will pull a list of your friends from facebook.
+        </p>
+        <p>        <a href="examples/facebook">Check out the demo</a></p>
   
   
         <hr>
