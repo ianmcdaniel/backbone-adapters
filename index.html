@@ -36,9 +36,9 @@
         <ul class="nav">
           <li><a href="#facebook">Facebook</a></li>
           <li><a href="#linkedin">LinkedIn</a></li>
-          <li><a href="#parse">Parse</a></li>
-         <li><em>More coming...</em></li>
-          
+          <li><a href="#instagram">Instagram</a></li>
+          <li><a href="#yammer">Yammer</a></li>
+          <li><em>More coming...</em></li>
         </ul>
         <h4>Contributing</h4>
         <ul class="nav">
@@ -58,8 +58,7 @@
         </p>
         <p>
           The project is <a href="http://github.com/ianmcdaniel/backbone-adapters/">hosted on GitHub</a> 
-          and maintained by <a href="http://twitter.com/ianmcdaniel">@ianmcdaniel</a> and 
-          <a href="http://twitter.com/bradbouse">@bradbouse</a>.
+          and maintained by <a href="http://twitter.com/ianmcdaniel">@ianmcdaniel</a>.
           Bugs and suggestions are welcome and should be reported to the <a href="http://github.com/ianmcdaniel/backbone-adapters/issues">issues page</a>.
           Backbone Adapters are available for use under the <a href="http://github.com/ianmcdaniel/backbone-adapters/blob/master/LICENSE">MIT software license</a>.
         </p>
@@ -138,44 +137,97 @@ var Friends = new FriendList();
           <img src="docs/images/linkedin_32.png" />
           LinkedIn Adapter
         </h2>
-        <p>The Bakcbone LInkedIn Adapter requires the <a href="https://developer.linkedin.com/documents/getting-started-javascript-api" target="_blank">LinkedIn Javascript SDK</a>. </p>
+        <p>The Backbone LinkedIn Adapter requires the <a href="https://developer.linkedin.com/documents/getting-started-javascript-api" target="_blank">LinkedIn Javascript SDK</a>. </p>
 
 <pre class="prettyprint linenums">
 &lt;script src="backbone.js"&gt;&lt;/script&gt;
 &lt;script src="http://platform.linkedin.com/in.js"&gt;
-  api_key: your_api_key_goes_here
+  api_key: YOUR_API_KEY_GOES_HERE
 &lt;/script&gt;
 &lt;script src="linkedin.sync.js"&gt;&lt;/script&gt;
 </pre>
 
         <p>
-          Make a call to <code>FB.init</code> with your apps credentials as described in the 
-          <a href="http://developers.facebook.com/docs/reference/javascript/">Facebook Documentation</a> 
-          beforehand. Once you have authentication you can start setting up your models 
-          and collections by setting the <code>sync</code> property to <code>Backbone.FacebookSync</code>
-          on both your models</p>
-<pre class="prettyprint linenums">
-var Friend = Backbone.Model.extend({
-  sync: Backbone.FacebookSync
-});
-</pre>
-
-        <p>and your collections.</p>
-        
-<pre class="prettyprint linenums">
-var FriendList = Backbone.Collection.extend({
-  url:'me/friends',
-  sync:Backbone.FacebookSync
-});
-
-var Friends = new FriendList();
-</pre>
-
-        <p>Making a call to <code>Friends.fetch()</code> will pull a list of your friends from facebook.
+          Make sure to include your LinkedIn API Key in the script block you use to load the LinkedIn Javascript SDK.
+          Once you have authentication you can start setting up your models 
+          and collections by setting the <code>sync</code> property to <code>Backbone.LinkedInSync</code>
         </p>
-        <p>        <a href="examples/facebook">Check out the demo</a></p>
+<pre class="prettyprint linenums">
+var Connection = Backbone.Model.extend({
+  sync: Backbone.LinkedInSync
+});
+
+var ConnectionList = Backbone.Collection.extend({
+  model: Connection,
+  url:'people/~/connections',
+  sync:Backbone.LinkedInSync
+});
+
+var Connections = new ConnectionList();
+</pre>
+
+        <p>Making a call to <code>Connections.fetch()</code> will pull a list of your LinkedIn connections.
+        </p>
+        <p>        <a href="examples/linkedin">Check out the demo</a></p>
   
   
+
+        <hr>
+        <h2 id="instagram">
+          <img src="docs/images/instagram_32.png" />
+          Instagram Adapter
+        </h2>
+
+<pre class="prettyprint linenums">
+&lt;script src="backbone.js"&gt;&lt;/script&gt;
+&lt;script src="instagram.sync.js"&gt;&lt;/script&gt;
+</pre>
+<pre class="prettyprint linenums">
+var Image = Backbone.Model.extend({
+  sync: Backbone.InstagramSync
+});
+
+var ImagesList = Backbone.Collection.extend({
+  model: Image,
+  url:'users/self/feed',
+  sync:Backbone.InstagramSync
+});
+
+// Once you've authenticated through Instagram, asign your access_token like this
+// You must have an access token before making requests to instagram
+Backbone.InstagramSync.access_token = access_token;
+
+var feed = new ImagesList();
+</pre>
+<p><a href="examples/instagram">Check out the demo</a></p>
+
+
+ <hr>
+        <h2 id="yammer">
+          <img src="docs/images/yammer_32.png" />
+          Yammer Adapter
+        </h2>
+
+<pre class="prettyprint linenums">
+&lt;script src="backbone.js"&gt;&lt;/script&gt;
+&lt;script data-app-id="YOUR_APP_ID" src="https://assets.yammer.com/platform/yam.js"&gt;&lt;/script&gt;
+&lt;script src="instagram.yammer.js"&gt;&lt;/script&gt;
+</pre>
+<pre class="prettyprint linenums">
+  var Coworker = Backbone.Model.extend({
+    sync:Backbone.YammerSync
+  });
+
+  var CoworkerList = Backbone.Collection.extend({
+    model: Coworker,
+    url:'https://www.yammer.com/api/v1/users.json',
+    sync:Backbone.YammerSync
+  });
+
+  var coworkers = new CoworkerList();
+</pre>
+<p><a href="examples/yammer">Check out the demo</a></p>
+
         <hr>
         <h2 id="how_to_contribute">How can I contribute?</h2>
         <p>Want to help? </p>
